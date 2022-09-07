@@ -1,0 +1,73 @@
+#+title: A tour on NixOS
+#+author: Marcos Benevides (mtrsk.github.io)
+#+email: marcos.schonfinkel@gmail.com
+
+* Introduction
+
+#+BEGIN_QUOTE
+I mean, if 10 years from now, when you are doing something quick and dirty, you
+suddenly visualize that I am looking over your shoulders and say to yourself
+"Dijkstra would not have liked this", well, that would be enough immortality for
+me.
+
+Edsger W. Dijkstra
+#+END_QUOTE
+
+** Key ideas
++ Dependencies are Graphs!
+  #+BEGIN_SRC shell
+    nix-store --query --graph $(readlink -f $(which python)) > python.dot
+    dot -Tps python.dot -o python.pdf
+  #+END_SRC
+
+  [[./images/closure.png]]
+
++ Somehow, we'be been failing to represent then as such, or been doing that implicitly.
++ Nix makes it explicit.
+
+** How build packages from source
+  #+BEGIN_SRC shell
+    tar -xf source.tar.gz
+    cd source
+    ./configure --prefix=$HOME/.mypath
+    make
+    make install
+  #+END_SRC
+
+** Nix Ecosystem
+| Name    | What it does                                                                                 |
+|---------+----------------------------------------------------------------------------------------------|
+| Nix     | A lazy, untyped, functional programming language. Built to write declarative configurations. |
+| NixOS   | A Linux distribution managed by Nix                                                          |
+| Nixpkgs | A place where Nix users place their meta-packages                                            |
+
+* Nix Store
++ ~/nix/store/~ is a Graph
++ ~/nix/store/*~ are the *immutable* nodes of that Graph
+
+  #+BEGIN_SRC shell
+    dirname $(readlink -f $(which nvim))
+    /nix/store/40vcicw0v28v6bvl18nqa1ldq9v80m27-neovim-0.7.2/bin
+  #+END_SRC
+
+* Nix Expression Language
+** Properties
++ Reproducible
++ Composable
+
+** Characteristics
++ DSL
++ Purelly Functional
++ Dynamically Typed
++ Lazy
+
+** Flakes
+Flakes are a new feature in the Nix Language
+
+* Nixpkgs
+* References
++ Videos
+    * [[https://www.youtube.com/watch?v=6iVXaqUfHi4][Nix: What Even is it Though]]
+    * [[https://www.youtube.com/watch?v=t6goF1dM3ag][Armijn Hemel - The History of NixOS]]
+    * [[https://www.youtube.com/watch?v=fsgYVi2PQr0][The dark and murky past of NixOS (NixCon 2019)]]
++ Documentation
