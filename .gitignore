@@ -1,0 +1,21 @@
+# Compiled
+*.elc
+
+# Packaging
+.cask
+
+# Backup files
+*~
+
+# Undo-tree save-files
+*.~undo-tree
+
+# Nix/Direnv/Lorri
+.envrc
+
+# Ignore generated files
+*.tex
+*.pdf
+
+# Except LaTeX templates
+!tex/*.tex
