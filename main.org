@@ -1,3 +1,4 @@
+#+STARTUP: inlineimages
 #+title: A tour on NixOS
 #+author: Marcos Benevides (mtrsk.github.io)
 #+email: marcos.schonfinkel@gmail.com
@@ -20,7 +21,8 @@ Edsger W. Dijkstra
     dot -Tps python.dot -o python.pdf
   #+END_SRC
 
-  [[./images/closure.png]]
+#+ATTR_ORG: :width 700
+[[./images/closure.png]]
 
 + Somehow, we'be been failing to represent then as such, or been doing that implicitly.
 + Nix makes it explicit.
@@ -42,6 +44,12 @@ Edsger W. Dijkstra
 | Nixpkgs | A place where Nix users place their meta-packages                                            |
 
 * Nix Store
+
+
+#+ATTR_ORG: :width 500
+[[./images/memes_00.jpg]]
+
+** Properties
 + ~/nix/store/~ is a Graph
 + ~/nix/store/*~ are the *immutable* nodes of that Graph
 
@@ -49,6 +57,17 @@ Edsger W. Dijkstra
     dirname $(readlink -f $(which nvim))
     /nix/store/40vcicw0v28v6bvl18nqa1ldq9v80m27-neovim-0.7.2/bin
   #+END_SRC
+
+** Nodes
+
+#+ATTR_ORG: :width 500
+[[./images/dolstra_nix_store.png]]
+
+** Generations
+
+#+ATTR_ORG: :width 500
+[[./images/user_environments.png]]
+
 
 * Nix Expression Language
 ** Properties
@@ -62,12 +81,19 @@ Edsger W. Dijkstra
 + Lazy
 
 ** Flakes
-Flakes are a new feature in the Nix Language
+Flakes is a new feature in the Nix Language
 
 * Nixpkgs
+** Conclusion
+#+ATTR_ORG: :width 500
+[[./images/memes_01.jpg]]
+
 * References
 + Videos
-    * [[https://www.youtube.com/watch?v=6iVXaqUfHi4][Nix: What Even is it Though]]
-    * [[https://www.youtube.com/watch?v=t6goF1dM3ag][Armijn Hemel - The History of NixOS]]
-    * [[https://www.youtube.com/watch?v=fsgYVi2PQr0][The dark and murky past of NixOS (NixCon 2019)]]
+  * [[https://www.youtube.com/watch?v=6iVXaqUfHi4][Nix: What Even is it Though]]
+  * [[https://www.youtube.com/watch?v=t6goF1dM3ag][Armijn Hemel - The History of NixOS]]
+  * [[https://www.youtube.com/watch?v=fsgYVi2PQr0][The dark and murky past of NixOS (NixCon 2019)]]
 + Documentation
++ Blogs
++ Communities
+  * [[https://t.me/nixosbrasil][NixOS Brasil (Telegram)]]
