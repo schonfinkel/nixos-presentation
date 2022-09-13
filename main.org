@@ -1,7 +1,6 @@
 #+STARTUP: inlineimages
 #+title: A tour on NixOS
 #+author: Marcos Benevides (mtrsk.github.io)
-#+email: marcos.schonfinkel@gmail.com
 
 * Introduction
 
@@ -16,7 +15,7 @@ Edsger W. Dijkstra
 
 ** Key ideas
 + Dependencies are Graphs!
-  #+BEGIN_SRC shell
+  #+Begin_SRC shell
     nix-store --query --graph $(readlink -f $(which python)) > python.dot
     dot -Tps python.dot -o python.pdf
   #+END_SRC
@@ -80,13 +79,70 @@ Edsger W. Dijkstra
 + Dynamically Typed
 + Lazy
 
+** Derivations
++ Derivations are a declarative way to write content in the ~/nix/store/~.
+
+*** Example
+
+#+BEGIN_SRC nix
+  { pkgs ? import <nixpkgs> {} }:
+
+  let
+    version = "2.12";
+  in
+  pkgs.stdenv.mkDerivation {
+    name = "hello-${version}";
+    src = pkgs.fetchurl {
+      url = "https://mirror.cedia.org.ec/gnu/hello/hello-${version}.tar.gz";
+      sha256 = "1ayhp9v4m4rdhjmnl2bq3cibrbqqkgjbl3s7yk2nhlh8vj3ay16g";
+    };
+    doCheck = true;
+  }
+#+END_SRC
+
+*** Building
+
+Building using the old (non-Flakes) way.
+
+#+BEGIN_SRC shell
+  nix-build hello.nix
+#+END_SRC
+
 ** Flakes
-Flakes is a new feature in the Nix Language
++ It's basically a lockfile for your derivation
++ Since it's a Nix lang feature now, it can also be applied to your system
+  * YES, you can have a lockfile to our entire system
 
 * Nixpkgs
-** Conclusion
 #+ATTR_ORG: :width 500
 [[./images/memes_01.jpg]]
+
+* NixOS
+NixOS is a Linux distribution where all packages are built and managed
+declaratively by Nix.
+
+** Properties
++ System rollbacks are a built-in abstraction, simply provided by Nix, if
+  combined with a version control system (like Git), then it can be also made
+  immutable and [[https://r13y.com/][fully reproducible]].
++ Is both:
+  * Source-based & Binary caches
+  * Rolling release & not rolling release
+
+** Core Ideas
+If one analyzes Eelco's ideas from 2004 and the current DevOps ecosystem, the
+following can be noticed:
+- [X] Sanboxing is now popular
+  * We still we have to convice most of the DevOps world that reproducibility is
+    a must.
+- [X] Infra as code is also getting popular
+  * But we managed to get the entire DevOps world to use crap like YAML,
+    everything still sucks
+  * Nix is also not the coolest language around, but at least is a real language
+- [ ] License compliance is a real thing, mostly ignored by developers
+- [ ] Reproducible development enviroments
+
+Even if Nix never becomes mainstream, it has the right funcdamentals.
 
 * References
 + Videos
@@ -94,6 +150,7 @@ Flakes is a new feature in the Nix Language
   * [[https://www.youtube.com/watch?v=t6goF1dM3ag][Armijn Hemel - The History of NixOS]]
   * [[https://www.youtube.com/watch?v=fsgYVi2PQr0][The dark and murky past of NixOS (NixCon 2019)]]
 + Documentation
-+ Blogs
+  * [[https://nixos.org/guides/nix-pills/][Nix Pills]] (old)
+  * [[https://nix.dev/][Nix Dev]]
 + Communities
   * [[https://t.me/nixosbrasil][NixOS Brasil (Telegram)]]
