@@ -142,9 +142,12 @@ following can be noticed:
 - [ ] License compliance is a real thing, mostly ignored by developers
 - [ ] Reproducible development enviroments
 
-Even if Nix never becomes mainstream, it has the right funcdamentals.
+Even if Nix never becomes mainstream, it has the right fundamentals.
 
 * References
+
+There's an amazing tutorial about AWS + NixOS on [[https://typeclasses.com/nix][Type Classes]].
+
 + Videos
   * [[https://www.youtube.com/watch?v=6iVXaqUfHi4][Nix: What Even is it Though]]
   * [[https://www.youtube.com/watch?v=t6goF1dM3ag][Armijn Hemel - The History of NixOS]]
