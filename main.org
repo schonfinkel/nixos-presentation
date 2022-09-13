@@ -142,7 +142,7 @@ following can be noticed:
 - [ ] License compliance is a real thing, mostly ignored by developers
 - [ ] Reproducible development enviroments
 
-Even if Nix never becomes mainstream, it has the right funcdamentals.
+Even if Nix never becomes mainstream, it has the right fundamentals.
 
 * References
 
