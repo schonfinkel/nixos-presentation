@@ -145,6 +145,9 @@ following can be noticed:
 Even if Nix never becomes mainstream, it has the right funcdamentals.
 
 * References
+
+There's an amazing tutorial about AWS + NixOS on [[https://typeclasses.com/nix][Type Classes]].
+
 + Videos
   * [[https://www.youtube.com/watch?v=6iVXaqUfHi4][Nix: What Even is it Though]]
   * [[https://www.youtube.com/watch?v=t6goF1dM3ag][Armijn Hemel - The History of NixOS]]
