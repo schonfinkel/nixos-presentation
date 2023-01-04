@@ -33,6 +33,7 @@
       {
         devShell = pkgs.mkShell {
           buildInputs = with pkgs; [
+            emacs
             texenv
           ];
         };

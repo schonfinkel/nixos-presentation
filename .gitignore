@@ -19,3 +19,7 @@
 
 # Except LaTeX templates
 !tex/*.tex
+
+# Nix
+result
+examples/result
