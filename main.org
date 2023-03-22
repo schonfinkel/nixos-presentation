@@ -190,8 +190,8 @@ declaratively by Nix.
   * Rolling release & not rolling release
  
 ** As a Worstation
-#+ATTR_ORG: :width 500
-#+ATTR_LATEX: :width 0.8\textwidth
+#+ATTR_ORG: :width 300
+#+ATTR_LATEX: :width 0.5\textwidth
 [[./images/my-nixos-setup.png]]
 
 + [[https://github.com/nix-community/home-manager][home-manager]]
