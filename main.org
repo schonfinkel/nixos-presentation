@@ -111,6 +111,11 @@ Package management in most Linux systems is a mess...
 #+ATTR_LATEX: :width 0.6\textwidth
 [[./images/user_environments.png]]
 
+** Generations (2)
+
+#+ATTR_ORG: :width 500
+#+ATTR_LATEX: :width 0.6\textwidth
+[[./images/generations.png]]
 
 * Nix Expression Language
 ** Properties
@@ -127,7 +132,7 @@ Package management in most Linux systems is a mess...
 + Derivations are a declarative way to write content in the ~/nix/store/~.
 
 #+ATTR_LATEX: :width 0.2\textwidth
-#+INCLUDE: "./examples/hello.nix" src nix
+#+INCLUDE: "./examples/hello/hello.nix" src nix
 
 ** Building our derivation
 
@@ -159,6 +164,8 @@ It get's better...
 
 * Nixpkgs
 
+** Nixpkgs
+
 #+ATTR_ORG: :width 500
 #+ATTR_LATEX: :width 0.8\textwidth
 [[./images/memes_01.jpg]]
@@ -170,11 +177,12 @@ It get's better...
 [[./images/status.png]]
 
 * NixOS
+** The Linux Distribution
+
 NixOS is a Linux distribution where all packages are built and managed
 declaratively by Nix.
 
-** Properties
-+ System rollbacks are a built-in abstraction, simply provided by Nix, if
++ System rollbacks are a built-in abstraction, simply provided by Nix, when
   combined with a version control system (like Git), then it can be also made
   immutable and [[https://r13y.com/][fully reproducible]].
 + Is both:
