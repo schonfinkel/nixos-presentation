@@ -53,6 +53,7 @@ Edsger W. Dijkstra
     make
     make install
   #+END_SRC
+  + We've been doing this for quite a while, it's almost begging to be automated...
 
 ** Nix Ecosystem
 | Name    | What it does                                      |
@@ -74,10 +75,6 @@ The core idea behind ~nix~ is get stuff done in a __reproducible__ way.
   + That doesn't necessary mean you'll get the same results
   + Repeatability doesn't imply reproducibility
 
-** What do we mean by that? (x2)
-
-
-
 * The UNIX hellhole
 ** The UNIX Hellhole
 Package management in most Linux systems is a mess...
@@ -87,7 +84,6 @@ Package management in most Linux systems is a mess...
 + ...
 
 ** Nix Store
-
 
 #+ATTR_ORG: :width 500
 #+ATTR_LATEX: :width 1.0\textwidth
@@ -115,6 +111,11 @@ Package management in most Linux systems is a mess...
 #+ATTR_LATEX: :width 0.6\textwidth
 [[./images/user_environments.png]]
 
+** Generations (2)
+
+#+ATTR_ORG: :width 500
+#+ATTR_LATEX: :width 0.6\textwidth
+[[./images/generations.png]]
 
 * Nix Expression Language
 ** Properties
@@ -131,7 +132,7 @@ Package management in most Linux systems is a mess...
 + Derivations are a declarative way to write content in the ~/nix/store/~.
 
 #+ATTR_LATEX: :width 0.2\textwidth
-#+INCLUDE: "./examples/hello.nix" src nix
+#+INCLUDE: "./examples/hello/hello.nix" src nix
 
 ** Building our derivation
 
@@ -149,37 +150,65 @@ then test it:
 #+END_SRC
 
 * Flakes
-** Inputs
-** Outputs
-** Reworking the spatula build
+** Refactoring our Hello app
+We can this to refactor our ~hello~ derivation!
+** A New CLI
++ ~nix run~
+#+BEGIN_SRC shell
+  nix run nixpkgs#cowsay -- "hello"
+#+END_SRC
+
++ ~nix develop~
+** Showing Devenv
+It get's better...
 
 * Nixpkgs
+
+** Nixpkgs
 
 #+ATTR_ORG: :width 500
 #+ATTR_LATEX: :width 0.8\textwidth
 [[./images/memes_01.jpg]]
 
+** Nix Channel Status
+
+#+ATTR_ORG: :width 500
+#+ATTR_LATEX: :width 0.8\textwidth
+[[./images/status.png]]
+
 * NixOS
+** The Linux Distribution
+
 NixOS is a Linux distribution where all packages are built and managed
 declaratively by Nix.
 
-** Properties
-+ System rollbacks are a built-in abstraction, simply provided by Nix, if
++ System rollbacks are a built-in abstraction, simply provided by Nix, when
   combined with a version control system (like Git), then it can be also made
   immutable and [[https://r13y.com/][fully reproducible]].
 + Is both:
   * Source-based & Binary caches
   * Rolling release & not rolling release
+ 
+** As a Worstation
+#+ATTR_ORG: :width 300
+#+ATTR_LATEX: :width 0.5\textwidth
+[[./images/my-nixos-setup.png]]
+
++ [[https://github.com/nix-community/home-manager][home-manager]]
++ flakes
+
+** You can also deploy and manage infra with it
++ [[https://github.com/nix-community/home-manager][home-manager]]
++ flakes
 
 ** Core Ideas
 If one analyzes Eelco's ideas from 2003 and the current DevOps ecosystem, the
 following can be noticed:
 - [X] Sanboxing is now popular
   * We still we have to convice most of the DevOps world that reproducibility is
-    a must.
+    a must. In fact, infrastructure has much to learn from Functional Programming.
 - [X] Infra as code is also getting popular
-  * But we managed to get the entire DevOps world to use crap like YAML,
-    everything still sucks
+  * But... it's in YAML... or in HCL (sucks less)...
   * Nix is also not the coolest language around, but at least is a real language
 - [ ] License compliance is a real thing, mostly ignored by developers
 - [ ] Reproducible development environments
@@ -190,12 +219,16 @@ Even if Nix never becomes mainstream, it has the right fundamentals.
 
 There's an amazing tutorial about AWS + NixOS on [[https://typeclasses.com/nix][Type Classes]].
 
++ Books
+  * [[https://github.com/Gabriella439/nixos-in-production][NixOS in Production]]
++ Documentation
+  * [[https://nixos.org/guides/nix-pills/][Nix Pills]] (old)
+  * [[https://nix.dev/][Nix Dev]]
++ Memes
+  * [[https://github.com/gytis-ivaskevicius/high-quality-nix-content/tree/master][High Quality Nix Content]]
 + Videos
   * [[https://www.youtube.com/watch?v=6iVXaqUfHi4][Nix: What Even is it Though]]
   * [[https://www.youtube.com/watch?v=t6goF1dM3ag][Armijn Hemel - The History of NixOS]]
   * [[https://www.youtube.com/watch?v=fsgYVi2PQr0][The dark and murky past of NixOS (NixCon 2019)]]
-+ Documentation
-  * [[https://nixos.org/guides/nix-pills/][Nix Pills]] (old)
-  * [[https://nix.dev/][Nix Dev]]
-+ Communities
-  * [[https://t.me/nixosbrasil][NixOS Brasil (Telegram)]]
+
+   
